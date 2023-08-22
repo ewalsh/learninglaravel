@@ -3,6 +3,7 @@
 @section('content')
     <h1>{{ $question->title }}</h1>
     <p class="lead">{{ $question->description }}</p>
+    <p>Submitted by: {{ $question->user->name }}, {{ $question->created_at->diffForHumans() }}</p>
     <hr />
 
     @if($question->answers->count() >0)
@@ -12,6 +13,7 @@
                     <p>
                         {{ $answer->content }}
                     </p>
+                    <p>Answered by: {{ $answer->user->name }}, {{ $answer->created_at->diffForHumans() }}</p>
                 </div>
             </div>
         @endforeach

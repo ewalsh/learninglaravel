@@ -1,6 +1,7 @@
 import './bootstrap';
-import.meta.glob([
-    '../images/**',
-    '../fonts/**',
-    '../css/**'
-  ]);
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();

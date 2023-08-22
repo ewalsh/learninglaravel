@@ -8,6 +8,7 @@ use App\Models\Question;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -43,6 +44,7 @@ class AnswerController extends Controller
 
         $answer = new Answer();
         $answer->content = $request->content;
+        $answer->user()->associate(Auth::id());
 
         // // Log::info("created new answer");
         // // Log::info($answer);

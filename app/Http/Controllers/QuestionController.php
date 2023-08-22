@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -41,6 +46,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->title = $request->title;
         $question->description = $request->description;
+        $question->user()->associate(Auth::id());
         
         // if successful redirect
         if($question->save()){
